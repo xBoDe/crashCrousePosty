@@ -5,6 +5,9 @@ use App\Models\Post;
 use Faker\Provider\en_UG\PhoneNumber;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostLiked;
+
 
 class PostLikeController extends Controller
 {
@@ -23,6 +26,7 @@ class PostLikeController extends Controller
             'user_id'=> $request->user()->id,
 
         ]);
+        Mail::to($post->user)->send(new PostLiked(auth()->user(),$post));
         return back();
     }
     public function destroy(Post $post, Request $request)
