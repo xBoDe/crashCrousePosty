@@ -10,6 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
+    public mixed $user;
     protected  $fillable= [
         'body'
     ];

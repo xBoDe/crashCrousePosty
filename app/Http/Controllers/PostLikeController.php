@@ -20,7 +20,6 @@ class PostLikeController extends Controller
     {
         if ($post->likedBy($request->user())){
             return response(null,409);
-
        }
         $post->likes()->create([
             'user_id'=> $request->user()->id,
